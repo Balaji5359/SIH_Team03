@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Explore States - Heritage India</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: #444;
+    }
+    .states-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .state-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 1rem;
+    }
+    .state-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+    .state-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+    .state-name {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Select a State to Explore</h1>
+  </header>
+  <div class="states-grid" id="statesGrid">
+    <!-- State cards will be injected here -->
+  </div>
+
+  <script>
+    const states = [
+      {
+        name: "Karnataka",
+        image: "hampi_virsupaksha.jpg",
+        description: "Land of rich heritage and temples",
+        link: "temples.html?state=Karnataka"
+      },
+      {
+        name: "Andhra Pradesh",
+        image: "virsupaksha.jpg",
+        description: "Famous for its temples and culture",
+        link: "temples.html?state=Andhra Pradesh"
+      },
+      {
+        name: "Tamil Nadu",
+        image: "hampi_narashima.jpg",
+        description: "Home to ancient temples and traditions",
+        link: "temples.html?state=Tamil Nadu"
+      },
+      {
+        name: "Maharashtra",
+        image: "hampi_elephant_stand.jpg",
+        description: "Known for its forts and temples",
+        link: "temples.html?state=Maharashtra"
+      },
+      {
+        name: "Kerala",
+        image: "hampi_narashima.jpg",
+        description: "Land of backwaters and temples",
+        link: "temples.html?state=Kerala"
+      }
+    ];
+
+    const container = document.getElementById('statesGrid');
+
+    states.forEach(state => {
+      const card = document.createElement('div');
+      card.className = 'state-card';
+      card.innerHTML = `
+        <img src="${state.image}" alt="${state.name}" class="state-image" />
+        <div class="state-name">${state.name}</div>
+        <p>${state.description}</p>
+      `;
+      card.addEventListener('click', () => {
+        window.location.href = state.link;
+      });
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>

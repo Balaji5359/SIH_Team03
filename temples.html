@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Temples - Heritage India</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: #444;
+    }
+    .temples-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .temple-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 1rem;
+    }
+    .temple-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+    .temple-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+    .temple-name {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="stateTitle">Temples in [State]</h1>
+  </header>
+  <div class="temples-grid" id="templesGrid">
+    <!-- Temple cards will be injected here -->
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const state = urlParams.get('state');
+
+    const templesData = {
+      "Karnataka": [
+        { name: "Hampi Virupaksha Temple", image: "hampi_virsupaksha.jpg", link: "temple-detail.html?temple=Hampi Virupaksha" },
+        { name: "Hampi Narashima Temple", image: "hampi_narashima.jpg", link: "temple-detail.html?temple=Hampi Narashima" }
+      ],
+      "Andhra Pradesh": [
+        { name: "Tirupati Temple", image: "virsupaksha.jpg", link: "temple-detail.html?temple=Tirupati" },
+        { name: "Amaravati Stupa", image: "hampi_elephant_stand.jpg", link: "temple-detail.html?temple=Amaravati" }
+      ],
+      "Tamil Nadu": [
+        { name: "Meenakshi Temple", image: "hampi_narashima.jpg", link: "temple-detail.html?temple=Meenakshi" },
+        { name: "Brihadeeswarar Temple", image: "hampi_virsupaksha.jpg", link: "temple-detail.html?temple=Brihadeeswarar" }
+      ],
+      "Maharashtra": [
+        { name: "Ajanta Caves", image: "hampi_elephant_stand.jpg", link: "temple-detail.html?temple=Ajanta" },
+        { name: "Elephanta Caves", image: "virsupaksha.jpg", link: "temple-detail.html?temple=Elephanta" }
+      ],
+      "Kerala": [
+        { name: "Guruvayur Temple", image: "hampi_narashima.jpg", link: "temple-detail.html?temple=Guruvayur" },
+        { name: "Padmanabhaswamy Temple", image: "hampi_virsupaksha.jpg", link: "temple-detail.html?temple=Padmanabhaswamy" }
+      ]
+    };
+
+    document.getElementById('stateTitle').textContent = `Temples in ${state}`;
+
+    const temples = templesData[state] || [];
+    const container = document.getElementById('templesGrid');
+
+    temples.forEach(temple => {
+      const card = document.createElement('div');
+      card.className = 'temple-card';
+      card.innerHTML = `
+        <img src="${temple.image}" alt="${temple.name}" class="temple-image" />
+        <div class="temple-name">${temple.name}</div>
+      `;
+      card.addEventListener('click', () => {
+        window.location.href = temple.link;
+      });
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>
