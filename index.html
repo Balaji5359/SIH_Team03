@@ -146,22 +146,12 @@
 
   <section class="showcase">
     <h3>Experience Temples in 3D</h3>
-    <div class="model-container">
-      <model-viewer
-        src="../Models/hampi_virupaksha.glb"
-        alt="Hampi Virupaksha Temple"
-        ar
-        ar-modes="webxr scene-viewer quick-look"
-        camera-controls
-        auto-rotate
-        shadow-intensity="1"
-        loading="eager"
-        reveal="auto"
-        environment-image="neutral">
-        <div slot="progress-bar">Loading 3D model...</div>
-      </model-viewer>
+    <div class="model-container" id="hampiModelsContainer">
+      <p>Loading Hampi 3D models...</p>
     </div>
   </section>
+
+  <script src="js/hampiModels.js"></script>
 
   <script>
     // Simple animation on scroll
